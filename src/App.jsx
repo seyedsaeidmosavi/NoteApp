@@ -19,12 +19,21 @@ const tabData = [
 
 function App() {
     const ActiveTab = 1;
+    const handleActiveTab = (id) => {
+        console.log("Clicked",id);
+    }
+
+
+
+
     return (
         <div className="tab">
             <div className="tab__header">
                 {
                     tabData.map((tab) => (
-                        <button key={tab.id} className={ActiveTab === tab.id ? "active" : ""}>
+                        <button
+                            onClick={()=>handleActiveTab(tab.id)}
+                            key={tab.id} className={ActiveTab === tab.id ? "active" : ""}>
                             <span>{tab.title}</span>
                             <span className="tab-indicator"></span>
                         </button>
@@ -32,9 +41,9 @@ function App() {
                 }
             </div>
             <div className="tab__content">
-               {
-                tabData[ActiveTab - 1].content
-               }
+                {
+                    tabData[ActiveTab - 1].content
+                }
             </div>
         </div>
     )
