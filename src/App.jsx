@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 const tabData = [
     {
@@ -18,13 +19,10 @@ const tabData = [
 ];
 
 function App() {
-    const ActiveTab = 1;
+    const [activeTab, setActiveTab] = useState(2);
     const handleActiveTab = (id) => {
-        console.log("Clicked",id);
-    }
-
-
-
+        setActiveTab(id);
+    };
 
     return (
         <div className="tab">
@@ -32,8 +30,8 @@ function App() {
                 {
                     tabData.map((tab) => (
                         <button
-                            onClick={()=>handleActiveTab(tab.id)}
-                            key={tab.id} className={ActiveTab === tab.id ? "active" : ""}>
+                            onClick={() => handleActiveTab(tab.id)}
+                            key={tab.id} className={activeTab === tab.id ? "active" : ""}>
                             <span>{tab.title}</span>
                             <span className="tab-indicator"></span>
                         </button>
@@ -42,7 +40,7 @@ function App() {
             </div>
             <div className="tab__content">
                 {
-                    tabData[ActiveTab - 1].content
+                    tabData[activeTab - 1].content
                 }
             </div>
         </div>
